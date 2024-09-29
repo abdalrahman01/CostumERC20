@@ -293,29 +293,6 @@
 				"inputs": [
 					{
 						"internalType": "address",
-						"name": "sender",
-						"type": "address"
-					},
-					{
-						"internalType": "address",
-						"name": "recipient",
-						"type": "address"
-					},
-					{
-						"internalType": "uint256",
-						"name": "amount",
-						"type": "uint256"
-					}
-				],
-				"name": "transfer",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
 						"name": "from",
 						"type": "address"
 					},
@@ -500,11 +477,11 @@
 			]
 		},
 		"challangeOne.sol": {
-			"keccak256": "0xe6672091a76169739a87e9689746bf7bc788ef0ee4fadfe612314998a6402270",
+			"keccak256": "0xcdbd2524e6b7200c5a91615b539924cc580e2df6d570dc52c03d0a1bf443cbad",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://fe9c08a144904e37ea2d46d9684397c064303463cfd0830b7b777a2aa7046e15",
-				"dweb:/ipfs/QmefZm65fypibxt5ZgAfngcbEygAhQhkrau54PLpNKBgQJ"
+				"bzz-raw://21cbeb8a374cb92e1a6347692c368a7dac908eb2c91204ea2794922f2a904f6c",
+				"dweb:/ipfs/Qma6EUEsZ6jqLqfn5uVyv8Gqyk4gpxeex2cpXKFvJBmwPA"
 			]
 		}
 	},
