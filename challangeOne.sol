@@ -16,7 +16,8 @@ contract AbdToken is ERC20 {
 
     constructor() ERC20("AbdToken", "ATKN") {
         _mint(msg.sender, 100 * 10 ** 18 );
-        unsiswap = 0x5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f;
+        unsiswap = 0xf164fC0Ec4E93095b804a4795bBe1e041497b92a; // Uniswap V2 Router address
+
     }
 
 
@@ -57,8 +58,9 @@ contract AbdToken is ERC20 {
             // sell
             feeValue = calculateFee(value, sellingFee);
         } else {
-
-            feeValue = calculateFee(value, sellingFee);
+            
+            // transfer
+            feeValue = calculateFee(value, transferFee);
         }
 
 

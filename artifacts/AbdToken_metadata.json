@@ -477,11 +477,11 @@
 			]
 		},
 		"challangeOne.sol": {
-			"keccak256": "0xcdbd2524e6b7200c5a91615b539924cc580e2df6d570dc52c03d0a1bf443cbad",
+			"keccak256": "0xbaac0cbe7eac7b6b3989aac480352e7695678de5ecd5026225b8c87ad8ac5850",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://21cbeb8a374cb92e1a6347692c368a7dac908eb2c91204ea2794922f2a904f6c",
-				"dweb:/ipfs/Qma6EUEsZ6jqLqfn5uVyv8Gqyk4gpxeex2cpXKFvJBmwPA"
+				"bzz-raw://a1f14388a24dcc681f980a85ff674e663cac2729d1ab6e5fbb73fc1fd914a21f",
+				"dweb:/ipfs/QmS1RPkcGspgQND1HBMPc2ogNL4kp2CYHaBYDnGtSDKkxz"
 			]
 		}
 	},
