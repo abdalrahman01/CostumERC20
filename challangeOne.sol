@@ -12,12 +12,12 @@ contract AbdToken is ERC20 {
     uint8 transferFee = 1; // 1 %
     uint8 buyingFee = 2; // 2 %
     uint8 sellingFee = 3; // 3 %
-
+    address owner;
 
     constructor() ERC20("AbdToken", "ATKN") {
-        _mint(msg.sender, 100 * 10 ** 18 );
+        owner = msg.sender;
+        _mint(owner, 100 * 10 ** 18 );
         unsiswap = 0xf164fC0Ec4E93095b804a4795bBe1e041497b92a; // Uniswap V2 Router address
-
     }
 
 
@@ -25,48 +25,26 @@ contract AbdToken is ERC20 {
         return (value * fee) / 100; 
     }
 
-    function transfer(address to, uint256 value) public override returns (bool) {
-        address owner = _msgSender();
-        
-        uint256 feeValue; 
-        if (to == unsiswap) {
-            // sell
-            feeValue = calculateFee(value, sellingFee);
-        } else {
-
-            // transfer
-            feeValue = calculateFee(value, transferFee);
-        }
-
-        value -= feeValue;
-        _transfer(owner, owner, value);
-        _transfer(owner, to, value);
-        return true;
-    }
-
-    function transferFrom(address from, address to, uint256 value) public override returns (bool) {
-        address owner = _msgSender();
-
-
-        uint256 feeValue; 
+    function _update(address from, address to, uint256 value) internal override {
+        uint256 feeValue = 0; 
         if (from == unsiswap) {
-
             // buy
             feeValue = calculateFee(value, buyingFee);
-        } else if (to == unsiswap) {
-
+        } 
+        else if (to == unsiswap) {
             // sell
             feeValue = calculateFee(value, sellingFee);
-        } else {
-            
-            // transfer
+        }
+        else {
+            // transfer 
             feeValue = calculateFee(value, transferFee);
         }
-
-
-        value -= feeValue;
-        _transfer(owner, owner, value);
-        _transfer(from, to, value);
-        return true;
+        
+        uint256 newValue = value - feeValue;
+        
+        super._update(from, to, newValue);        
+        super._update(from, owner, feeValue);        
     }
+
+   
 }
