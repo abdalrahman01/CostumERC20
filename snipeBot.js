@@ -81,12 +81,39 @@ function startLiquidityListener(tokenAddress) {
             const pairContract = new ethers.Contract(pairAddress, UNISWAP_PAIR_ABI, ethersProvider);
             pairContract.on("Mint", (sender, amount0, amount1) => {
                 console.log(`Liquidity added for token: ${tokenAddress}, amounts: ${amount0}, ${amount1}`);
+                // Execute the buy action (swap ETH for the token)
+                buyToken(tokenAddress).catch(console.error);
                 clearTimeout(timer); // Stop the timer as liquidity was added
             });
         }
     });
 }
 
+async function buyToken(tokenAddress) {
+    const amountOutMin = 0; // Set minimum amount of tokens to accept (use slippage tolerance)
+    const ethAmount = ethers.utils.parseEther("0.1"); // Amount of ETH to spend (set your amount)
+    const path = [ethers.constants.AddressZero, tokenAddress]; // ETH -> Token
+    const deadline = Math.floor(Date.now() / 1000) + 60 * 20; // 20 minutes from now
+    const walletAddress = "0xc6D6FDf6bE8DfdEf570bb64D4fCC2c934E97dCED";
+    console.log(`Attempting to buy token: ${tokenAddress} with 0.1 ETH...`);
+
+    const tx = await uniswapRouter.swapExactETHForTokens(
+        amountOutMin,
+        path,
+        walletAddress,
+        deadline,
+        {
+            value: ethAmount, // ETH to send
+            gasLimit: ethers.utils.hexlify(200000), // Set an appropriate gas limit
+            gasPrice: await ethersProvider.getGasPrice() // Get current gas price
+        }
+    );
+
+    console.log(`Transaction sent: ${tx.hash}`);
+
+    const receipt = await tx.wait();
+    console.log(`Transaction confirmed in block: ${receipt.blockNumber}`);
+}
 // Subscribe to new blocks
 async function subscribeToNewBlocks() {
     ethersProvider.on("block", handleNewBlock);
