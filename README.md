@@ -1,4 +1,4 @@
-# Costum ERC20 Contract ./CustomeERC20.sol
+# Custom ERC20 Contract ./CustomERC20.sol
 
 It has:
 1. 1 % buying fee
