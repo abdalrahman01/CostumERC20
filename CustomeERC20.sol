@@ -5,20 +5,17 @@ pragma solidity ^0.8.0;
 import {ERC20} from "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
 contract AbdToken is ERC20 {
-    // ownable
-    // address sender; 
-    // address reciever; 
     address uniswapV2; // pair address not the router
     
-    uint8 transferFee = 1; // 1 %
-    uint8 buyingFee = 2; // 2 %
-    uint8 sellingFee = 3; // 3 %
+    uint8 transferFee = 1; 
+    uint8 buyingFee = 2; 
+    uint8 sellingFee = 3;
     address owner;
 
     constructor() ERC20("AbdToken", "ATKN") {
         owner = msg.sender;
         _mint(owner, 100 * 10 ** 18 );
-        uniswapV2 = 0xf164fC0Ec4E93095b804a4795bBe1e041497b92a; // Uniswap V2 Router address
+        uniswapV2 = 0xf164fC0Ec4E93095b804a4795bBe1e041497b92a;
     }
 
 
